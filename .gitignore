@@ -160,4 +160,4 @@ cython_debug/
 #.idea/
 
 # heavy folders
-./tools/UVtools
+./tools/UVtools/
