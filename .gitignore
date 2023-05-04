@@ -161,3 +161,4 @@ cython_debug/
 
 # heavy folders
 ./tools/*/
+./data/*.png
