@@ -9,15 +9,7 @@ def add_config_files_():
     '''adds printers files in ../data folder'''
     pass
 
-'''
-The given function should receive 3 values, mathematically it is 
-#  func:(x,y,z) --> func(x,y,z)
-and this function is func: R^3 --> R for any point defined in the domain.
-size_x, size_y, size_z are the length of shape in each standard
-catesian coordinate that should be printed. that and 
-layerHeight is very important as it specifies the number of layers. 
-size_z/layerHeight == number of layers.
-'''
+
 def slicer(func, 
            func_x_domain =[0,1],
            func_y_domain =[0,1],
@@ -32,6 +24,15 @@ def slicer(func,
            file_name='img',
            start_layer=1,
            printer='AnyCubeMonoX6K'):
+    '''
+    This function should receive 3 values, mathematically it is 
+    #  func:(x,y,z) --> func(x,y,z)
+    and this function is func: R^3 --> R for any point defined in the domain.
+    size_x, size_y, size_z are the length of shape in each standard
+    catesian coordinate that should be printed. that and 
+    layerHeight is very important as it specifies the number of layers. 
+    size_z/layerHeight == number of layers.
+    '''
    
     # check weather the printer's configuraion .ini fils existed
     #  ....to be coded....
@@ -52,14 +53,20 @@ def slicer(func,
     max_layer_num = int(size_z/layerHeight)
     assert(max_layer_num < max_print_height/layerHeight)
 
+    start_x_pixel = display_pixels_x//2-size_x_in_pixel//2
+    end_x_pixel   = display_pixels_x//2+size_x_in_pixel//2
+
+    start_y_pixel = display_pixels_y//2-size_y_in_pixel//2
+    end_y_pixel   = display_pixels_y//2+size_y_in_pixel//2
+
     print('max_layer_num=', max_layer_num)
-    for z in range(1, max_layer_num+1, 1): # layers. From 1 because we have no 0-layer
-        v_holder = np.zeros((display_pixels_y, display_pixels_x)) # width and heigh are reveresed in here
+    # layers. From 1 because we have no 0-layer
+    for z in range(1, max_layer_num+1, 1): 
+        # width and heigh are reveresed in here
+        v_holder = np.zeros((display_pixels_y, display_pixels_x)) 
         print('rendering layer z=',z,'/',max_layer_num, '...')
-        for width in range(display_pixels_x//2-size_x_in_pixel//2, 
-                           display_pixels_x//2+size_x_in_pixel//2):
-            for height in range(display_pixels_y//2-size_y_in_pixel//2, 
-                                display_pixels_y//2+size_y_in_pixel//2):
+        for width in range(start_x_pixel, end_x_pixel):
+            for height in range(start_y_pixel, end_y_pixel):
                 # point = (0,0,0)    
                 point = (func_x_domain[1]-func_x_domain[0])/(size_x_in_pixel//2 *2)*(width-(display_pixels_x//2-size_x_in_pixel//2)), (func_y_domain[1]-func_y_domain[0])/(size_y_in_pixel//2 *2)*(height-(display_pixels_y//2-size_y_in_pixel//2)), (func_z_domain[1]-func_z_domain[0])/(max_layer_num)*(z-1)
 

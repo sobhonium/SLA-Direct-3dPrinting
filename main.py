@@ -5,7 +5,7 @@ sys.path.insert(0, './src/')
 
 from slicer import slicer
  
-from  utils import (int_tostring, sdf, primitive, dummy, 
+from  utils import (int_tostring, sdf, primitive, dummy,sphere,heart, 
                     copy_file, copy_folder, clear_folder,
                     count_content_in_folder,
                     update_file, zipFilesInDir,
@@ -22,13 +22,13 @@ def main():
     # FIXME: its best if I consider a .json file and read from that...
     layerHeight = 0.05
 
-    slicer(func=primitive,
-           func_x_domain =[0,1],
-           func_y_domain =[-1,1],
-           func_z_domain =[0,1],
-           size_x=5, # in mm
-           size_y=5, # in mm
-           size_z=0.5,  # in mm 
+    slicer(func=heart,
+           func_x_domain =[2.5,4],
+           func_y_domain =[2.5,4],
+           func_z_domain =[2.5,4],
+           size_x=50, # in mm
+           size_y=20, # in mm
+           size_z=50,  # in mm 
            layerHeight = layerHeight, # in mm  
            path="./data/",
            file_name='img',

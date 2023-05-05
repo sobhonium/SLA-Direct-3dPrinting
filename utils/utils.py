@@ -127,8 +127,17 @@ def dummy(point):
 def sphere(point):
     '''a helper function to test sdf'''
     x, y, z = point
-    r = 5
-    return (x-r)**2+(y-r)**2+(z-r)**2 - (r)**2
+    r = 1
+    val = (x-1)**2+(y-1)**2+(z-1)**2
+    if ( val- (r)**2 <0 and val-(r-0.4)**2>0 ):
+        return -44
+    return +44
+
+def heart(point):
+    '''a helper function to test sdf'''
+    x, y, z = point
+    return ((x-3)**2+ (9/4)*(y-3)**2+(z-3)**2 -1)**3 - (x-3)**2*(z-3)**3 - (9/80)*(y-3)**2*(z-3)**3
+
 
 def primitive(point):
     '''a helper function to test sdf'''
