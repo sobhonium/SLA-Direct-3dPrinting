@@ -162,3 +162,7 @@ cython_debug/
 # heavy folders
 ./tools/*/
 ./data/*.png
+
+*.sl1s
+*.pwmb
+

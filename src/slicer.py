@@ -53,7 +53,7 @@ def slicer(func,
     assert(max_layer_num < max_print_height/layerHeight)
 
     print('max_layer_num=', max_layer_num)
-    for z in range(1, max_layer_num+1, 20): # layers. From 1 because we have no 0-layer
+    for z in range(1, max_layer_num+1, 1): # layers. From 1 because we have no 0-layer
         v_holder = np.zeros((display_pixels_y, display_pixels_x)) # width and heigh are reveresed in here
         print('rendering layer z=',z,'/',max_layer_num, '...')
         for width in range(display_pixels_x//2-size_x_in_pixel//2, 
