@@ -160,7 +160,7 @@ cython_debug/
 #.idea/
 
 # heavy folders
-./tools/*/
+./tools/*
 ./data/*.png
 
 *.sl1s
