@@ -37,16 +37,22 @@ def slicer(func,
     # check weather the printer's configuraion .ini fils existed
     #  ....to be coded....
 
-    #must assure that values are integer
+    # must assure that values are integer
 
     # must replaced. read from a config file.
     display_pixels_x = 5760 # num pixels
     display_pixels_y = 3600 # num pixel
     
-    display_width    = 198.15  # means that in each mm we have 29.069 (5760/198.15) pixels.
+    display_width    = 198.15  
     display_height   = 123.84
     max_print_height = 245
-
+    
+    # Note: means that in each mm we have 29.069 (5760/198.15) pixels. 
+    # Also, it means that 0.034 = 1/(29.069) is each pixle's size in mm.
+    # This parameter is shown in 'Anycube photon Workshop' as 
+    # 'XY-pixel size' in 'Machine' tab and it is calculated as
+    #  XY-pixel size(um) = 34.400. 
+    
     size_x_in_pixel = int(size_x*(5760/198.15))
     size_y_in_pixel = int(size_y*(3600/123.84))
 
