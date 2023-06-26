@@ -1,7 +1,13 @@
 #!/usr/bin/bash
 
+
+
+mkdir tools
+cd tools
+
+
+
 # Download and place UVtools in /tools folder.
-cd ./tools
 wget https://github.com/sn4k3/UVtools/releases/download/v3.13.1/UVtools_linux-x64_v3.13.1.zip 
 
 mkdir UVtools_linux-x64_v3.13.1

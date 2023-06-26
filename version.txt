@@ -1,0 +1,20 @@
+23 May 2023: 
+In this version the raft is added and you can put the structure above the raft with some voids in it. Later on, you should use UVTools to add support
+and connect this raft to the structure through this void/blank/black layers.
+start_layer and good_gap are the two variables for this. The reason was that the structure was stuck to the plate and when removing from plate after print was done, some parts were damaged. so I needed something to disconnect my structure from plat. Still not sure whether this works or not, but a test is under printing .... let's see how it looks like.
+
+--------------------------------------------------------
+3 June 2023:
+
+* I added a faster slicer in src/slicer_fast.py
+it is way more faster than src/slicer.py
+
+* Some minor changes also applied to the z-tuneing when I 
+add a good_gap. Previously, it counted the function z-layers
+when I used good_gap>0 and raft>0,  but now the function starts its z=0 
+catesian coordinates when z=good_gap+raft (the function's z=0).
+
+* working on faster method, needs conversion from point chekcing
+to vector chening (vector of 3-elments), and for that I need a logical
+and for function like filter2() and pyramid_gyroid().
+--------------------------------------------------------

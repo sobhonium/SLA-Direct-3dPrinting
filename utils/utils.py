@@ -119,48 +119,9 @@ def convert(input_file, output_file, type='pwmb'):
     # os.system(f'./tools/UVtools_linux-x64_v3.13.1/UVtoolsCmd convert sample.sl1s sample.pwmb pwmb')
 
 
-def dummy(point):
-    '''a helper function to test sdf'''
-    x, y, z = point
-    return (x-y)
-
-def sphere(point):
-    '''a helper function to test sdf'''
-    x, y, z = point
-    r = 1
-    val = (x-1)**2+(y-1)**2+(z-1)**2
-    if ( val- (r)**2 <0 and val-(r-0.4)**2>0 ):
-        return -44
-    return +44
-
-def heart(point):
-    '''a helper function to test sdf'''
-    x, y, z = point
-    return ((x-3)**2+ (9/4)*(y-3)**2+(z-3)**2 -1)**3 - (x-3)**2*(z-3)**3 - (9/80)*(y-3)**2*(z-3)**3
 
 
-def primitive(point):
-    '''a helper function to test sdf'''
-    x, y, z = 2*np.pi*point[0], 2*np.pi*point[1], 2*np.pi*point[2]
-    x*=3
-    y*=3
-    z*=3
-    return np.cos(x) + np.cos(y) + np.cos(z) 
-    
-def sdf(point, func):
-    '''The Sign Distance function
-    This function is recieves a function as an input argument and 
-    for every point in that function produces a value <0, >0 or =0 values 
-    for that point input. Mathematically speaking, SDF: (X, func)--> func(X)
-    and in this case X==point.
 
-    >>> point = (1, 0.5, 2)
-    >>> sdf(point, func=sphere)
-    20.25
-    >>> sdf((0.5,-0.5,-0.5), func=primitive)
-    -3.0
-    '''
-    return func(point)
 
 
 

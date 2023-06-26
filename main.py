@@ -3,14 +3,20 @@ import sys
 sys.path.insert(0, './utils/')
 sys.path.insert(0, './src/')
 
-from slicer import slicer
+# if if recall from slicer.py it's not fast
+# but the slicer in slicer_fast.py is faster.
+from slicer_fast import slicer 
  
-from  utils import (int_tostring, sdf, primitive, dummy,sphere,heart, 
-                    copy_file, copy_folder, clear_folder,
+from  utils import (copy_file, copy_folder, clear_folder,
                     count_content_in_folder,
                     update_file, zipFilesInDir,
                     rename_file, convert
                     )
+from sdf_functions import (double_gyroid, diamond, gyroid, primitive, pyarmaid_function, 
+                           gyroid_cylinder, 
+                            elipsis)
+from filter_functions import custom_surface_filter, custom_surface_filter2
+
 def main():
 
     # clear the path
@@ -22,16 +28,19 @@ def main():
     # FIXME: its best if I consider a .json file and read from that...
     layerHeight = 0.05
 
-    slicer(func=heart,
-           func_x_domain =[2.5,4],
-           func_y_domain =[2.5,4],
-           func_z_domain =[2.5,4],
-           size_x=50, # in mm
-           size_y=20, # in mm
-           size_z=50,  # in mm 
+    slicer(func=gyroid_cylinder,
+           func_x_domain=[0,10],
+           func_y_domain=[0,10],
+           func_z_domain=[0,15],
+           size_x=100, # in mm
+           size_y=100, # in mm
+           size_z=150,  # in mm
+           filter_func= custom_surface_filter2,
+           raft_layers=5, # number of raft layers
+           good_gap =200, # to let structure be obove the raft 
            layerHeight = layerHeight, # in mm  
            path="./data/",
-           file_name='img',
+           file_name='img0',
         )
 
     # copy .ini files in specified location    
