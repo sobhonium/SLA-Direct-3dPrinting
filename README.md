@@ -1,6 +1,12 @@
 # SLA-Direct-3dPrinting
 A python tool for producing a .pwmb file from a function for my printer (AnyCubic Photon Mono X 6K)
+
+#####
+
 ![image](./docs/images/direct_printing.png)
+
+#####
+
 ## Auto Setup
 
 Run install.sh to download the required tools and packages.
