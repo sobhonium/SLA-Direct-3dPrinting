@@ -13,9 +13,9 @@ from  utils import (copy_file, copy_folder, clear_folder,
                     rename_file, convert
                     )
 from sdf_functions import (double_gyroid, diamond, gyroid, primitive, pyarmaid_function, 
-                           gyroid_cylinder, 
+                           gyroid_cylinder, gyroid_parimitive,heart,
                             elipsis)
-from filter_functions import custom_surface_filter, custom_surface_filter2
+from filter_functions import custom_surface_filter, custom_surface_filter2, binary_step_function
 
 def main():
 
@@ -28,16 +28,16 @@ def main():
     # FIXME: its best if I consider a .json file and read from that...
     layerHeight = 0.05
 
-    slicer(func=gyroid_cylinder,
-           func_x_domain=[0,10],
-           func_y_domain=[0,10],
-           func_z_domain=[0,15],
-           size_x=100, # in mm
-           size_y=100, # in mm
-           size_z=150,  # in mm
+    slicer(func=heart,
+           func_x_domain=[0,3],
+           func_y_domain=[0,3],
+           func_z_domain=[0,3],
+           size_x=20, # in mm
+           size_y=20, # in mm
+           size_z=20,  # in mm
            filter_func= custom_surface_filter2,
            raft_layers=5, # number of raft layers
-           good_gap =200, # to let structure be obove the raft 
+           good_gap =0, # to let structure be obove the raft 
            layerHeight = layerHeight, # in mm  
            path="./data/",
            file_name='img0',

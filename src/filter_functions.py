@@ -56,6 +56,6 @@ def custom_surface_filter2(input_):
     # condi  = (input_<thickness) & (input_>-thickness)
     # return np.where( condi, 1, 0)
 
-    condi  = (input_>-0.2) & (input_<0.2)
+    condi  = (input_>-0.02) & (input_<0.02)
     return np.where( condi, 1, 0)
 

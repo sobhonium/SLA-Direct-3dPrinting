@@ -97,7 +97,8 @@ def gyroid(point):
     '''a helper function to test sdf'''
     x, y, z = 2*np.pi*point[0], 2*np.pi*point[1], 2*np.pi*point[2]
     return np.sin(x)*np.cos(y) + np.sin(y)*np.cos(z) + np.sin(z)*np.cos(x) 
-  
+
+
 def primitive(point):
     '''a helper function to test sdf'''
     x, y, z = 2*np.pi*point[0], 2*np.pi*point[1], 2*np.pi*point[2]
@@ -106,7 +107,27 @@ def primitive(point):
     z*=3
     return np.cos(x) + np.cos(y) + np.cos(z) 
 
+def gyroid_parimitive(point):
+    '''a helper function to test sdf
+    an interpolation between gyroid and primitive'''
+    # x, y, z = 2*np.pi*point[0], 2*np.pi*point[1], 2*np.pi*point[2]
+    return gyroid(point) + primitive(point)
 
+def heart(point):
+    '''a helper function to test sdf
+    agyroid heart'''
+
+ 
+
+    x = point[0]- 1.5
+    y = point[1]- 1.5
+    z = point[2]- 1.5
+
+    Heart = (x**2+(9/4)*y**2+z**2-1)**3 - x**2*z**3 - (9/80)*y**2*z**3
+    return  Heart 
+   
+
+ 
 
 def sdf(point, func):
     '''The Sign Distance function
