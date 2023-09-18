@@ -71,4 +71,4 @@ slicer(func=gyroid,
 For setting other print variable like   ```layerHeight```, ```raft_layers```,  ```gap``` and others read on from the functions' doc strings.
 
 ## Extension
-I already set/check things based on Anycube Mono X 6K. If you want to add more SLA ptiners you only need to define and put the specks of your printer(s) in files like:
+I already set/check things based on Anycube Mono X 6K. If you want to add more SLA ptiners you only need to define and put the specks of your printer(s) in files like: ```src/printer.py```. 
