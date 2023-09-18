@@ -11,6 +11,6 @@ class AnyCubeMonoX6K():
     # This parameter is shown in 'Anycube photon Workshop' as 
     # 'XY-pixel size' in 'Machine' tab and it is calculated as
     #  XY-pixel size(um) = 34.400. 
-    file_format = ".pwmb"
+    file_format = "pwmb"
 
 # other printers can be added in here:...    
