@@ -1,5 +1,11 @@
 # this slicer is easier to undersrand that the one in slicer_fast.py
 # May 2023
+# notice: This part is not maintaned since May 2023. Kinda obsolete since
+# it's slow. Not needed anymore. But
+# I left it here for some recall in future...
+
+__author__ = 'SBN'
+__date__ = 'May 2023'
 
 import numpy as np
 from PIL import Image

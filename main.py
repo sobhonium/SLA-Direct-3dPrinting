@@ -1,9 +1,11 @@
+__author__ = 'SBN'
+__date__ = 'May 2023'
 
 import sys
 sys.path.insert(0, './utils/')
 sys.path.insert(0, './src/')
 
-# if if recall from slicer.py it's not fast
+# if recall from slicer.py it's not fast
 # but the slicer in slicer_fast.py is faster.
 from slicer_fast import slicer 
  
@@ -28,15 +30,15 @@ def main():
     # FIXME: its best if I consider a .json file and read from that...
     layerHeight = 0.05
 
-    slicer(func=heart,
-           func_x_domain=[0,3],
-           func_y_domain=[0,3],
-           func_z_domain=[0,3],
+    slicer(func=gyroid,
+           func_x_domain=[0,1],
+           func_y_domain=[0,1],
+           func_z_domain=[0,1],
            size_x=20, # in mm
            size_y=20, # in mm
            size_z=20,  # in mm
            filter_func= custom_surface_filter2,
-           raft_layers=5, # number of raft layers
+           raft_layers=0, # number of raft layers
            good_gap =0, # to let structure be obove the raft 
            layerHeight = layerHeight, # in mm  
            path="./data/",

@@ -1,3 +1,6 @@
+__author__ = 'SBN'
+__date__ = 'May 2023'
+
 ''' 
 The primary goal of slicers in resin printers' world is to 
 render layers'pixels as 0 or 1 to specify whether 

@@ -1,3 +1,6 @@
+__author__ = 'SBN'
+__date__ = 'May 2023'
+
 import numpy as np
 
 def dummy(point):

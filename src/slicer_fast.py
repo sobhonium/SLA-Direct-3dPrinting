@@ -1,6 +1,8 @@
-# June 2023
+__author__ = 'SBN'
+__date__ = 'June 2023'
+
 # this version of slicer is a lot faster that the current slicer that 
-# I'm using: for loops are replaced with np.mgrid
+# upgrade: for loops are replaced with np.mgrid
 
 import numpy as np
 from PIL import Image
@@ -10,6 +12,7 @@ sys.path.insert(0, '../utils/')
 from sdf_functions import  sdf, primitive, dummy, gyroid, pyarmaid_function
 from filter_functions import binary_step_function, custom_surface_filter, custom_surface_filter2
 from utils import int_tostring
+from printers import AnyCubeMonoX6K
 
 def add_config_files_():
     '''adds printers files in ../data folder'''
@@ -53,27 +56,28 @@ def slicer(func,
     size_z/layerHeight == number of layers.
     '''
     
-    # check weather the printer's configuraion .ini fils existed
+    # FIXIIT(SBN) : check weather the printer's configuraion .ini fils existed
     #  ....to be coded....
 
-    # must assure that values are integer
+    # FIXIIT(SBN) : must assure that values are integer
 
-    # must replaced. read from a config file.
-    display_pixels_x = 5760 # num pixels
-    display_pixels_y = 3600 # num pixel
+    # FIXIIT(SBN) : must replaced. read from a config file.
+    if printer == "AnyCubeMonoX6K":
+        display_pixels_x = AnyCubeMonoX6K.display_pixels_x # num pixels
+        display_pixels_y = AnyCubeMonoX6K.display_pixels_y # num pixel
+        
+        display_width    = AnyCubeMonoX6K.display_width  
+        display_height   = AnyCubeMonoX6K.display_height
+        max_print_height = AnyCubeMonoX6K.max_print_height
     
-    display_width    = 198.15  
-    display_height   = 123.84
-    max_print_height = 245
-    
-    # Note: means that in each mm we have 29.069 (5760/198.15) pixels. 
-    # Also, it means that 0.034 = 1/(29.069) is each pixle's size in mm.
-    # This parameter is shown in 'Anycube photon Workshop' as 
-    # 'XY-pixel size' in 'Machine' tab and it is calculated as
-    #  XY-pixel size(um) = 34.400. 
-    
-    size_x_in_pixel = int(size_x*(5760/198.15))
-    size_y_in_pixel = int(size_y*(3600/123.84))
+        # Note: for anycub6k means that in each mm we have 29.069 (5760/198.15) pixels. 
+    else:
+        sys.exit("errors! you need to define your "+ printer  + " printer first!")
+        
+    # it is highly important to know the size of object (in terms of num pixels)
+    # for each width and height  
+    size_x_in_pixel = int(size_x*(display_pixels_x/display_width))
+    size_y_in_pixel = int(size_y*(display_pixels_y/display_height))
 
     max_layer_num = int(size_z/layerHeight)
     assert(max_layer_num+raft_layers+good_gap < max_print_height/layerHeight)
