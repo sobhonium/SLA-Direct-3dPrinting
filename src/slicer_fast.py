@@ -79,6 +79,7 @@ def slicer(func,
     size_x_in_pixel = int(size_x*(display_pixels_x/display_width))
     size_y_in_pixel = int(size_y*(display_pixels_y/display_height))
 
+
     max_layer_num = int(size_z/layerHeight)
     assert(max_layer_num+raft_layers+good_gap < max_print_height/layerHeight)
 
@@ -92,9 +93,11 @@ def slicer(func,
     y = np.arange(start_y_pixel, end_y_pixel, 1)
     width, height = np.meshgrid(x, y)
     
- 
+    point_x = (func_x_domain[1]-func_x_domain[0])/(size_x_in_pixel//2 *2)*(width-start_x_pixel)+func_x_domain[0]
+    point_y = (func_y_domain[1]-func_y_domain[0])/(size_y_in_pixel//2 *2)*(height-start_y_pixel)+func_y_domain[0]
+    point_hw = point_x, point_y
 
-    point_hw = (func_x_domain[1]-func_x_domain[0])/(size_x_in_pixel//2 *2)*(width-(display_pixels_x//2-size_x_in_pixel//2)), (func_y_domain[1]-func_y_domain[0])/(size_y_in_pixel//2 *2)*(height-(display_pixels_y//2-size_y_in_pixel//2))
+
 
     print('max_layer_num=', max_layer_num)
     # layers. From 1 because we have no 0-layer
@@ -120,13 +123,14 @@ def slicer(func,
             image.save(path+file_name+int_tostring(z-1, 8)+'.png') 
             continue
 
-        point = point_hw[0], point_hw[1], (func_z_domain[1]-func_z_domain[0])/(max_layer_num)*(z-1-(raft_layers+good_gap))
+        point = point_hw[0], point_hw[1], (func_z_domain[1]-func_z_domain[0])/(max_layer_num)*(z-1-(raft_layers+good_gap))+func_z_domain[0]
         # print(point[0].shape)
         sdf_value = sdf(point, func=func)
-        # print(sdf_value.shape)
+        # print(sdf_value)
         
         v_holder[height, width] = filter_func(sdf_value)
         
+        # print(width.shape, height.shape)
 
         image = Image.fromarray(v_holder.astype('uint8')*255)
         image.save(path+file_name+int_tostring(z-1, 8)+'.png')     # number start from 0, other wise it is errrosome
